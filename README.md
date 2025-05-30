@@ -1,8 +1,8 @@
-# MyListeningPod – Podcast Streaming Web App
+# Mypodspace – Podcast Streaming Web App
 
 ## Overview
 
-MyListeningPod is a React-powered web application designed for streaming and managing podcast content. It offers users a clean and intuitive interface to discover, explore, and enjoy their favorite podcasts. The app supports both light and dark themes to enhance user comfort.
+Mypodspace is a React-powered web application designed for streaming and managing podcast content. It offers users a clean and intuitive interface to discover, explore, and enjoy their favorite podcasts. The app supports both light and dark themes to enhance user comfort.
 
 ## 🚀 Live Demo:
 Visit MyListeningPod
@@ -25,21 +25,21 @@ MyListeningPod is designed for a smooth user experience. Here's how to use it:
 **Switch Theme**: Use the theme toggle in the header to switch between light and dark modes according to your preference.
 
 ## Key Features
--**🎙 Podcast Discovery**: Browse podcasts across various genres
+**🎙 Podcast Discovery**: Browse podcasts across various genres
 
--**▶️ Built-In Streaming**: Stream episodes with an integrated audio player
+**▶️ Built-In Streaming**: Stream episodes with an integrated audio player
 
--**📁 Season Navigation**: View all available seasons for any show
+**📁 Season Navigation**: View all available seasons for any show
 
--**⭐ Favorites Management**: Save and revisit your favorite episodes
+**⭐ Favorites Management**: Save and revisit your favorite episodes
 
--**📱 Responsive Layout**: Designed for both desktop and mobile users
+**📱 Responsive Layout**: Designed for both desktop and mobile users
 
-_**🌙 Theme Toggle**: Light and dark modes for better usability
+**🌙 Theme Toggle**: Light and dark modes for better usability
 
-_**🧭 Sorting & Filtering**: Organize shows by title, genre, and update date
+**🧭 Sorting & Filtering**: Organize shows by title, genre, and update date
 
-_**🔄 Seamless Playback**: Continue listening while browsing the app
+**🔄 Seamless Playback**: Continue listening while browsing the app
 
 ### Audio Player
 The audio player is persistently fixed at the bottom of the screen, allowing uninterrupted playback as users navigate through the app. It shows the current episode and includes standard controls such as play, pause, and track progress.

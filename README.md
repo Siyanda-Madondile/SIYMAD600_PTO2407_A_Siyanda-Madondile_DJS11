@@ -1,121 +1,86 @@
-# 🎵 PODCAST APP | PORTFOLIO PIECE 💿
-[DJS11] Starter Instructions for the Final Portfolio Piece Submission 🚀
+# MyListeningPod – Podcast Streaming Web App
 
+## Overview
 
-<!-- omit in toc -->
-**Table of Contents**
+MyListeningPod is a React-powered web application designed for streaming and managing podcast content. It offers users a clean and intuitive interface to discover, explore, and enjoy their favorite podcasts. The app supports both light and dark themes to enhance user comfort.
 
-- [🤖 Technology](#-technology)
-- [📦Data](#data)
-	- [Relationships](#relationships)
-	- [Endpoints](#endpoints)
-	- [Genre Titles](#genre-titles)
-- [🧑 User Stories](#user-stories)
+## 🚀 Live Demo:
+Visit MyListeningPod
 
-## 🤖 Technology
+### Getting Started
+MyListeningPod is designed for a smooth user experience. Here's how to use it:
 
-**You will be required to complete this project using React and a build-process to manage all the complexity involved.** 
+**Explore Shows**: The homepage displays a collection of podcast shows. Use the sorting and filtering tools to find content that suits your interests.
 
-You are welcome to use any other technology that you are comfortable with as well as React. It is recommended that you use TypeScript as well, however you are welcome to avoid TypeScript entirely if you do not feel comfortable with it’s usage just yet.
+**Show Details**: Click on a show to view its full description and list of available seasons.
 
-## 📦Data
+**Season View**: From the show details page, select "View Seasons" to see all seasons associated with that show.
 
-**Data consists of three basic semantic units**
+**Play Episodes**: Choose a season to browse its episodes. Click on any episode to start playback.
 
-- `SHOW`: A specific podcast that contains a single or several `SEASON`
-- `SEASON`: A collection of `EPISODE` released across a specific timespan
-- `EPISODE`: Corresponds to a specific MP3 file that user can listen
+**Save Favorites**: Click the "Add to Favorites" button while browsing episodes to save them for future listening.
 
-However, the following information is also exposed via the API
+**View Favorites**: Head to the Favorites section to see all your saved episodes and play them again anytime.
 
-- `PREVIEW`: A summarised version of a `SHOW` that only contains basic information. Usually exposed when an array of different `SHOW` information is requested.
-- `GENRE`: Information related to a (one of many) genres that can be assigned to a `SHOW`
+**Switch Theme**: Use the theme toggle in the header to switch between light and dark modes according to your preference.
 
-### Relationships
+## Key Features
+-**🎙 Podcast Discovery**: Browse podcasts across various genres
 
-The following chart indicates the relations between units of data. It uses Entity Relationship mapping. In order to understand the meaning of symbols in the chart please read [the overview on the Mermaid.js documentation](https://mermaid.js.org/syntax/entityRelationshipDiagram.html). 
+-**▶️ Built-In Streaming**: Stream episodes with an integrated audio player
 
-Note that the text between the units indicates what properties map to one another. It is separated by means of three underscores (`___`). The value before the underscores is the mapping from the parent object, whereas the values after the underscore is the mapping from the child object.
+-**📁 Season Navigation**: View all available seasons for any show
 
-_Note that is some cases there is no way to infer the parent from the child itself , in those cases just the parent map is noted, with no value after the underscores_.
+-**⭐ Favorites Management**: Save and revisit your favorite episodes
+
+-**📱 Responsive Layout**: Designed for both desktop and mobile users
+
+_**🌙 Theme Toggle**: Light and dark modes for better usability
+
+_**🧭 Sorting & Filtering**: Organize shows by title, genre, and update date
+
+_**🔄 Seamless Playback**: Continue listening while browsing the app
+
+### Audio Player
+The audio player is persistently fixed at the bottom of the screen, allowing uninterrupted playback as users navigate through the app. It shows the current episode and includes standard controls such as play, pause, and track progress.
+
+## Project Structure & Routing
+
+### Route Overview
 
 ```mermaid
-erDiagram
+flowchart TD
+    %% Main routes with components
+    Home["/\nShowList.jsx"]
+    Favorites["/favorites\nFavorites.jsx"]
+    Details["/show/:id\nShowDetails.jsx"]
+    Seasons["/show/:id/seasons\nShowSeasons.jsx"]
+    Episodes["/show/:id/season/:num\nShowEpisodes.jsx"]
 
-PREVIEW {
-    number id
-    string title
-    string description
-		number seasons
-		string image
-		array genreIds
-		updated string
-}
+    %% Navigation paths - simplified
+    Home --> Details
+    Details --> Seasons
+    Seasons --> Episodes
 
-SHOW {
-    number id
-    string title
-    string description
-		array seasons
-}
-
-SEASON {
-  number id
-	string title
-	string image
-	array episodes
-}
-
-EPISODE {
-	number id
-	string file
-	string title
-}
-
-GENRE {
-	number id
-	string title
-	string description
-	array showIds
-}
-
-PREVIEW ||--|| SHOW: id___id
-PREVIEW }|--|{ GENRE: genreIds___showIds
-SHOW }|--|{ GENRE: genreIds___showIds
-SHOW ||--|{ SEASON: seasons___
-SEASON ||--|{ EPISODE: episodes___
-
+    %% Alternative paths
+    Home <--> Favorites
+    Details --> Home
+    Seasons --> Details
+    Episodes --> Seasons
 ```
 
-### Endpoints
+### Navigation Breakdown
+_ **Home** (/): Discover and browse all podcast shows
 
-Data can be called via a `fetch` request to the following three endpoints. Note that there is not always a one-to-one mapping between endpoints and actual data structures. Also note that  ***`<ID>`** indicates where the dynamic ID for the requested item should be placed. For example: `[https://podcast-api.netlify.app/genre/3](https://podcast-api.netlify.app/genre/3)`* 
+_ **Favorites** (/favorites): Access saved/favorited episodes
 
-| URL |  |
-| --- | --- |
-| `https://podcast-api.netlify.app` | Returns an array of PREVIEW |
-| `https://podcast-api.netlify.app/genre/<ID>` | Returns a GENRE object |
-| `https://podcast-api.netlify.app/id/<ID>` | Returns a SHOW object with several SEASON and EPISODE objects directly embedded within |
+- **Show Details** (/show/:id): View in-depth information about a selected podcast
 
-### Genre Titles
+- **Season List** (/show/:id/seasons): View all seasons for a particular podcast
 
-Since genre information is only exposed on `PREVIEW` by means of the specific `GENRE` id, it is recommended that you include the mapping between genre id values and title in your code itself:
+_ **Episodes** (/show/:id/season/:num): View and play episodes from a selected season
 
-| ID | Title |
-| --- | --- |
-| 1 | Personal Growth |
-| 2 | Investigative Journalism |
-| 3 | History |
-| 4 | Comedy |
-| 5 | Entertainment |
-| 6 | Business |
-| 7 | Fiction |
-| 8 | News |
-| 9 | Kids and Family |
-
-## 🧑 User Stories
-
-Please refer to the DJS rubric found in your dashboard spreadsheet for more detail. 
+Users can navigate linearly from shows → seasons → episodes, or easily return using intuitive back paths. The Favorites section is accessible from anywhere in the app.
 
 # CORE PROJECT REQUIREMENTS ✅
 
